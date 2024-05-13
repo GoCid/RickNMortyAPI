@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { Character } from '@app/shared/interfaces/character.interface';
 import { CharacterService } from '@app/shared/services/character.service';
-import { take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 type RequestInfo = {
   next: string;
@@ -27,20 +27,33 @@ export class CharactersLsComponent {
   
   constructor(
     private characterSvc: CharacterService, 
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router
+  ) { 
+    this.onUrlChanged();
+  }
 
   ngOnInit(): void {
     this.getData();
     this.getCharactersQuery();
   }
 
-  //get the query from the search-bar component
   private getCharactersQuery(): void {
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.characters = [];
       this.query = params.get('q') || '';
       this.getData();
     });
+  }
+
+  private onUrlChanged(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.characters = [];
+        this.page = 1;
+        this.getCharactersQuery();
+      });
   }
 
   private getData(): void {
@@ -58,4 +71,10 @@ export class CharactersLsComponent {
       }
     });
   }
+
+  public openModal(character: Character): void {
+    //open modal template is in characters-details.component.html
+    
+  }
+
 }
