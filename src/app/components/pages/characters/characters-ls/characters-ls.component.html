@@ -51,7 +51,7 @@
             <div class="relative p-6 flex-auto bg-slate-500">
                 <div class="flex items-center space-x-4">
                     <img [src]="selectedCharacter.image" alt="Character Image" width="88" height="88" class="flex-none rounded-lg bg-slate-100" loading="lazy" />
-                    <img [src]="selectedCharacter.location.url" alt="Origin Image" class="h-20" />
+                    <img [src]="selectedCharacter.origin.url" alt="Origin Image" class="h-20" />
                     <div class="min-w-0 flex-auto space-y-1 font-semibold">
                         <p class="text-cyan-400 text-sm leading-6">
                             <abbr title="Episode">Gender:</abbr> <span>{{selectedCharacter.gender}}</span>
@@ -67,6 +67,9 @@
                         </p>
                         <p class="text-slate-50 text-base">
                             Type: {{selectedCharacter.type}}
+                        </p>
+                        <p class="text-slate-50 text-base">
+                            Location: {{selectedCharacter.location.name}}
                         </p>
                         <p class="text-slate-50 text-base">
                             Origin: {{selectedCharacter.origin.name}}
