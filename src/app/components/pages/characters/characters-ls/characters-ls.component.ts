@@ -24,6 +24,7 @@ export class CharactersLsComponent {
   private query: string = '';
   private hideScroll = 200;
   private showScroll = 500;
+  public showModal = false;
   
   constructor(
     private characterSvc: CharacterService, 
@@ -72,9 +73,16 @@ export class CharactersLsComponent {
     });
   }
 
-  public openModal(character: Character): void {
-    //open modal template is in characters-details.component.html
-    
+  selectedCharacter: any
+  
+  public openModal(character:any){
+    this.toggleModal();
+    this.selectedCharacter = character;
+    console.log(character);
+  }
+
+  public toggleModal(){
+    this.showModal = !this.showModal;
   }
 
 }
