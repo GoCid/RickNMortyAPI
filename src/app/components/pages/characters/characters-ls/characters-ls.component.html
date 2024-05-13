@@ -29,7 +29,7 @@
         <div class="w-full mt-5 container-notFound" *ngIf="characters.length <= 0">
            <p>Evil Morty Delete this character... who it was?</p>
         </div>
-        <button class="fixed bottom-0 right-0 bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-5">Top</button>
+        <button class="fixed bottom-0 right-0 bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-5" (click)="navigateTop()">Top</button>
     </div>
 </div>
 
@@ -51,7 +51,6 @@
             <div class="relative p-6 flex-auto bg-slate-500">
                 <div class="flex items-center space-x-4">
                     <img [src]="selectedCharacter.image" alt="Character Image" width="88" height="88" class="flex-none rounded-lg bg-slate-100" loading="lazy" />
-                    <img [src]="selectedCharacter.origin.url" alt="Origin Image" class="h-20" />
                     <div class="min-w-0 flex-auto space-y-1 font-semibold">
                         <p class="text-cyan-400 text-sm leading-6">
                             <abbr title="Episode">Gender:</abbr> <span>{{selectedCharacter.gender}}</span>
